@@ -1,0 +1,27 @@
+﻿Database:
+3.a
+CREATE DATABASE education;
+ 
+CREATE TABLE student(
+        studentid INT NOT NULL,
+        name VARCHAR(250),
+        course INT,
+        PRIMARY KEY (studentid),
+        FOREIGN KEY (course) REFERENCES course(courseid)
+);
+CREATE TABLE course(
+        courseid INT NOT NULL,
+        name VARCHAR(250),
+        institution INT,
+        PRIMARY KEY (courseid),
+        FOREIGN KEY (institution) REFERENCES institution(institutionid) 
+);
+CREATE TABLE institution(
+        institutionid INT NOT NULL,
+        name VARCHAR(250),
+        PRIMARY KEY (institutionid)
+);
+
+
+3.b 
+SELECT institution.name AS "INSTITUTION NAME", course.name AS "COURSE NAME", (select count(*) AS "NUMBER OF STUDENTS") FROM institution,course,student WHERE course.institution = institution.institutionid;
